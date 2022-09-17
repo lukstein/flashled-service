@@ -1,21 +1,6 @@
-import time
-import RPi.GPIO as GPIO
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(23, GPIO.OUT)
- 
-p = GPIO.PWM(23,500)  # frequency=50Hz
-p.start(0)
-try:
-    while 1:
-        for dc in range(0, 51, 5):
-            p.ChangeDutyCycle(0)
-            time.sleep(0.5) 
-            p.ChangeDutyCycle(dc)
-            time.sleep(0.1)
-        for dc in range(50, -1, -5):
-            p.ChangeDutyCycle(dc)
-            time.sleep(0.1)
-except KeyboardInterrupt:
-    pass
-    p.stop()
-    GPIO.cleanup()
+# flashled-service
+This is a service to flash an LED to indicate the system is up and running. Runs on Raspi 3B+/4
+
+The script follows this tutorial: https://medium.com/codex/setup-a-python-script-as-a-service-through-systemctl-systemd-f0cc55a42267
+
+To make the script a service copy the file flashled.service to /etc/systemd/system/ and reload the deamons, enable and start.
