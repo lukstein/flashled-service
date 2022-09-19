@@ -7,9 +7,7 @@ p = GPIO.PWM(23, 200)  # frequency=200Hz
 p.start(0)
 try:
     while 1:
-        for dc in range(0, 51, 5):
-            p.ChangeDutyCycle(0)
-            time.sleep(0.5)
+        for dc in range(0, 51, 1):
             p.ChangeDutyCycle(dc)
             time.sleep(0.1)
         for dc in range(50, -1, -5):
